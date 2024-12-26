@@ -2,6 +2,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+import streamlit as st
 
 load_dotenv()
 
@@ -27,5 +28,23 @@ def run_flow(message: str) -> dict:
     response = requests.post(api_url, json=payload, headers=headers)
     return response.json()
 
-result = run_flow("what are the shipment times")
-print(result)
+def main():
+    st.title("Chat Interface")
+    message = st.text_area("Enter your message", placeholder="Ask something ...")
+
+    if st.button("Runflow"):
+        if not message.strip():
+            st.warning("Please enter a message")
+            return
+        try:
+            with st.spinner("Running flow ..."):
+                response = run_flow(message)
+
+            response = response["outputs"][0]["outputs"][0]["results"]["message"]["text"]
+            st.markdown(response)
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
+
