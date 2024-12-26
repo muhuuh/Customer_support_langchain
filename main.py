@@ -13,18 +13,15 @@ ENDPOINT = "customer_test" # The endpoint name of the flow
 
 def run_flow(message: str) -> dict:
    
-    api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{endpoint}"
+    api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{ENDPOINT}"
 
     payload = {
         "input_value": message,
-        "output_type": output_type,
-        "input_type": input_type,
+        "output_type": "chat",
+        "input_type": "chat",
     }
-    headers = None
-    if tweaks:
-        payload["tweaks"] = tweaks
-    if application_token:
-        headers = {"Authorization": "Bearer " + application_token, "Content-Type": "application/json"}
+  
+    headers = {"Authorization": "Bearer " + APPLICATION_TOKEN, "Content-Type": "application/json"}
     response = requests.post(api_url, json=payload, headers=headers)
     return response.json()
 
