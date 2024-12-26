@@ -1,7 +1,9 @@
 # Note: Replace **<YOUR_APPLICATION_TOKEN>** with your actual Application token
 import requests
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 BASE_API_URL = "https://api.langflow.astra.datastax.com"
@@ -25,3 +27,5 @@ def run_flow(message: str) -> dict:
     response = requests.post(api_url, json=payload, headers=headers)
     return response.json()
 
+result = run_flow("what are the shipment times")
+print(result)
