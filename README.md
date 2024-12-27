@@ -72,3 +72,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 - Built using [Streamlit](https://streamlit.io/).
 - Powered by [Datastax Astra LangFlow](https://www.datastax.com/products/datastax-astra).
+- Follow tutorial [Tech with Tim](https://www.youtube.com/watch?v=QmUsG_3wHPg)
